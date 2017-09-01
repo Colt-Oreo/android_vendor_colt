@@ -55,3 +55,8 @@ persist.sys.camera-sound=1
 PRODUCT_PACKAGES += \
     OmniJaws \
     OmniStyle
+
+# Themes
+PRODUCT_PACKAGES += \
+    PixelTheme \
+    Stock
