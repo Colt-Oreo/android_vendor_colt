@@ -243,3 +243,9 @@ DEVICE_PACKAGE_OVERLAYS += vendor/colt/overlay/common
 -include vendor/colt/config/colt.mk
 
 $(call prepend-product-if-exists, vendor/extra/product.mk)
+
+# Themes
+PRODUCT_PACKAGES += \
+    PixelTheme \
+    Stock
+
