@@ -83,14 +83,14 @@ PRODUCT_COPY_FILES += \
 
 # This is ColtOS!
 PRODUCT_COPY_FILES += \
-    vendor/colt/config/permissions/com.cyanogenmod.android.xml:system/etc/permissions/com.cyanogenmod.android.xml
+    vendor/colt/config/permissions/org.lineageos.android.xml:system/etc/permissions/org.lineageos.android.xml
 
 # Include colt audio files
 include vendor/colt/config/colt_audio.mk
 
-ifneq ($(TARGET_DISABLE_CMSDK), true)
-# CMSDK
-include vendor/colt/config/cmsdk_common.mk
+ifneq ($(TARGET_DISABLE_LINEAGE_SDK), true)
+# Lineage SDK
+include vendor/colt/config/lineage_sdk_common.mk
 endif
 
 # TWRP
@@ -106,7 +106,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     BluetoothExt \
     CMAudioService \
-    CMParts \
+    LineageParts \
     Development \
     Profiles \
     WeatherManagerService
@@ -128,7 +128,8 @@ colt_release=true
 # Custom Colt packages
 PRODUCT_PACKAGES += \
     AudioFX \
-    CMSettingsProvider \
+    LineageSettingsProvider \
+    LineageSetupWizard \
     Eleven \
     ExactCalculator \
     LockClock \
