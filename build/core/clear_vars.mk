@@ -1,5 +1,5 @@
 #
-# Lineage-specific variable clears
+# COLT-specific variable clears
 #
 LOCAL_IGNORE_SUBDIR :=
 
