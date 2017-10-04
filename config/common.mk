@@ -104,8 +104,8 @@ include vendor/colt/config/twrp.mk
 endif
 
 # Bootanimation
-PRODUCT_PACKAGES += \
-    bootanimation.zip
+PRODUCT_COPY_FILES += \
+    vendor/colt/prebuilt/common/bootanimation/bootanimation.zip:system/media/bootanimation.zip
 
 # Required Colt packages
 PRODUCT_PACKAGES += \
@@ -125,6 +125,8 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libprotobuf-cpp-full \
     librsjni
+
+colt_release=true
 
 # Custom Colt packages
 PRODUCT_PACKAGES += \
