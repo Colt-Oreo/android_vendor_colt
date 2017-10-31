@@ -13,32 +13,27 @@ VERSION := $(COLT_VERSION_MAJOR).$(COLT_VERSION_MINOR)$(COLT_VERSION_MAINTENANCE
 
 ifndef COLT_BUILDTYPE
     ifdef RELEASE_TYPE
+        # Starting with "COLT_" is optional
         RELEASE_TYPE := $(shell echo $(RELEASE_TYPE) | sed -e 's|^COLT_||g')
         COLT_BUILDTYPE := $(RELEASE_TYPE)
-    else
-        COLT_BUILDTYPE := UNOFFICIAL
     endif
 endif
 
-ifdef COLT_BUILDTYPE
-    ifeq ($(COLT_BUILDTYPE), RELEASE)
-       COLT_VERSION := $(TARGET_PRODUCT)_$(COLT_TAG)-$(VERSION)-RELEASE-$(shell date -u +%Y%m%d)
-    endif
-    ifeq ($(COLT_BUILDTYPE), NIGHTLY)
-        COLT_VERSION := $(TARGET_PRODUCT)_$(COLT_TAG)-$(VERSION)-NIGHTLY-$(shell date -u +%Y%m%d)
-    endif
-    ifeq ($(COLT_BUILDTYPE), EXPERIMENTAL)
-        COLT_VERSION := $(TARGET_PRODUCT)_$(COLT_TAG)-$(VERSION)-EXPERIMENTAL-$(shell date -u +%Y%m%d)
-    endif
-    ifeq ($(COLT_BUILDTYPE), UNOFFICIAL)
-        COLT_VERSION := $(TARGET_PRODUCT)_$(COLT_TAG)-$(VERSION)-UNOFFICIAL-$(shell date -u +%Y%m%d)
-    endif
+ifeq ($(COLT_BUILDTYPE), OFFICIAL)
+    COLT_VERSION := ColtOS-$(COLT_TAG)-$(VERSION)_$(COLT_BUILDTYPE)-$(shell date -u +%Y%m%d)-$(COLT_BUILD)
+
+else ifeq ($(COLT_BUILDTYPE), EXPERIMENTAL)
+    COLT_VERSION := ColtOS-$(COLT_TAG)-$(VERSION)_$(COLT_BUILDTYPE)-$(shell date -u +%Y%m%d)-$(COLT_BUILD) 
+
 else
-#We reset back to UNOFFICIAL
-        COLT_VERSION := $(TARGET_PRODUCT)_$(COLT_TAG)-$(VERSION)-UNOFFICIAL-$(shell date -u +%Y%m%d)
+    # If COLT_BUILDTYPE is not defined, set to UNOFFICIAL
+    COLT_BUILDTYPE := UNOFFICIAL
+    COLT_VERSION := ColtOS-$(COLT_TAG)-$(VERSION)_$(COLT_BUILDTYPE)-$(shell date -u +%Y%m%d)-$(COLT_BUILD)
 endif
+
 
 PRODUCT_PROPERTY_OVERRIDES += \
+    ro.colt.releasetype=$(COLT_BUILDTYPE) \
     ro.modversion=$(COLT_VERSION) \
     ro.colt.version=$(VERSION)-$(COLT_BUILDTYPE)
 
