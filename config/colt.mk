@@ -35,7 +35,8 @@ endif
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.colt.releasetype=$(COLT_BUILDTYPE) \
     ro.modversion=$(COLT_VERSION) \
-    ro.colt.version=$(VERSION)-$(COLT_BUILDTYPE)
+    ro.colt.version=$(VERSION)-$(COLT_BUILDTYPE) \
+    ro.colt.display.version=$(COLT_VERSION)
 
 # needed for statistics
 PRODUCT_PROPERTY_OVERRIDES += \
