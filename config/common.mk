@@ -253,6 +253,7 @@ DEVICE_PACKAGE_OVERLAYS += vendor/colt/overlay/common
 
 # COLT Stuff
 -include vendor/colt/config/colt.mk
+-include vendor/colt/config/colt_ota.mk
 
 $(call prepend-product-if-exists, vendor/extra/product.mk)
 
